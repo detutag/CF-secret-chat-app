@@ -1,0 +1,33 @@
+{
+  // Cloudflare Workers 設定檔（JSONC 格式，支援註解）
+  // 對應 wrangler v4 的設定格式，取代舊版的 wrangler.toml
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  "name": "cfwork-secret-chat-app",
+  "main": "src/index.js",
+  "compatibility_date": "2025-10-01",
+
+  // 開啟 Workers Logs，方便排查線上錯誤
+  "observability": {
+    "enabled": true
+  },
+
+  // 綁定 Durable Object：程式碼中透過 env.CHAT_ROOM 存取聊天室實例
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CHAT_ROOM",
+        "class_name": "ChatRoom"
+      }
+    ]
+  },
+
+  // 遷移設定：建立新的、內建 SQLite 的 Durable Object 類別
+  // 若要改用舊版 KV 儲存，可將 new_sqlite_classes 換成 new_classes
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["ChatRoom"]
+    }
+  ]
+}

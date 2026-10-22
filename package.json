@@ -1,0 +1,20 @@
+{
+  "name": "cfwork-secret-chat-app",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "基於 Cloudflare Workers 與 Durable Objects 的匿名即時聊天室",
+  "scripts": {
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "types": "wrangler types"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
